@@ -1,0 +1,20 @@
+{
+  "name": "poke-learn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"cd poke-server;npm run server\" \"cd poke-react; npm run start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidsugi/Poke-learn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidsugi/Poke-learn/issues"
+  },
+  "homepage": "https://github.com/davidsugi/Poke-learn#readme"
+}
