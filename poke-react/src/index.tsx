@@ -12,9 +12,7 @@ interface PokemonType {
 interface Pokemon {
   name: string;
   sprites: {
-    officialArtwork: {
-      frontDefault: string | null;
-    };
+    front_default: string;
   };
   types: PokemonType[];
 }
@@ -31,8 +29,8 @@ function App() {
         },
         body: JSON.stringify({
           query: `
-            query GetPokemon($id: Int!) {
-              getPokemon(id: $id) {
+            query GetPokemon($id: ID!) {
+              pokemon(id: $id) {
                 name
                 types {
                   type {
@@ -40,9 +38,7 @@ function App() {
                   }
                 }
                 sprites {
-                  officialArtwork {
-                    frontDefault
-                  }
+                  front_default
                 }
               }
             }
@@ -54,7 +50,7 @@ function App() {
       });
 
       const data = await response.json();
-      setPokemon(data.data.getPokemon);
+      setPokemon(data.data.pokemon);
     } catch (error) {
       console.error('Error fetching Pokemon:', error);
     }
@@ -64,6 +60,7 @@ function App() {
     fetchPokemon(2);  // Starting with Pokemon #2 like in Vue example
   }, []);
 
+  console.log(pokemon)
   return (
     <>
       <header>
@@ -74,9 +71,9 @@ function App() {
         {pokemon && (
           <div className="pokemon-container">
             <h2>{pokemon.name}</h2>
-            {pokemon.sprites?.officialArtwork?.frontDefault && (
+            {pokemon.sprites?.front_default && (
               <img 
-                src={pokemon.sprites.officialArtwork.frontDefault}
+                src={pokemon.sprites.front_default}
                 alt={pokemon.name}
               />
             )}

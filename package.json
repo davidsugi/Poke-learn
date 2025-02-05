@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"cd poke-server;npm run server\" \"cd poke-react; npm run start\""
+    "start": "npx concurrently \"npx kill-port 4000; cd poke-server;npm run start\" \"npx kill-port 3000;cd poke-react; npm run start\""
   },
   "repository": {
     "type": "git",
