@@ -41,7 +41,7 @@ export default function App() {
       setPokemon(data.pokemon);
       increase();
     }
-  }, [data]); // This effect runs every time data is updated
+  }, [data, increase, setPokemon]); // This effect runs every time data is updated
 
   const onInputchange = (e:ChangeEvent<HTMLInputElement>)=>{
     setText(e.target.value);
