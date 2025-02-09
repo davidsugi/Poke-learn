@@ -1,23 +1,25 @@
 {
-    "builds": [
-      {
-        "src": "poke-server/server.js", 
-        "use": "@vercel/node"
-      },
-      {
-        "src": "poke-react/package.json", 
-        "use": "@vercel/static-build",
-        "config": { "distDir": "build" } 
+  "builds": [
+    {
+      "src": "poke-server/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "poke-react/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
       }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)", 
-        "dest": "poke-server/server.js"
-      },
-      {
-        "src": "/(.*)", 
-        "dest": "poke-react/build/index.html"
-      }
-    ]
-  }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "poke-server/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "poke-react/index.html"
+    }
+  ]
+}
