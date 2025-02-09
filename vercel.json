@@ -17,7 +17,7 @@
       },
       {
         "src": "/(.*)", 
-        "dest": "poke-react/build/$1"
+        "dest": "poke-react/build/index.html"
       }
     ]
   }
