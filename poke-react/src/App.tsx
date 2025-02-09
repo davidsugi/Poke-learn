@@ -2,6 +2,11 @@ import './App.css';
 import React, { ChangeEvent, useRef, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_POKE } from './graphql/queries';
+import { motion } from 'framer-motion';
+import Pokeball from './components/Pokeball';
+import Hands from './components/Hands';
+import useStore from './services/store';
+import { getAsciiVal } from './utils';
 
 interface PokemonType {
   type: {
@@ -17,28 +22,24 @@ interface Pokemon {
   types: PokemonType[];
 }
 
-const getAsciiVal = (str: string)=>{
-  let letTotal = 0;
-
-  for (let i = 0; i < str.length; i++) {
-    letTotal+=str.charCodeAt(i);
-  }
-  return letTotal%1025
-}
 export default function App() {
   const [pokemonId, setPokemonId] = useState(151); // Initial Pokemon ID
   const [text,setText]=useState("")
   const { loading, error, data } = useQuery<{pokemon: Pokemon}>(GET_POKE, {
     variables: { id:pokemonId },
   });
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
+  
   const timer = useRef<NodeJS.Timeout | null>(null)
-
+  const handPos = useStore((state) => state.handPosition);
+  const increase = useStore((state) => state.increase);
+  const setPokemon = useStore((state) => state.setPokemon);
+  const pokemon = useStore((state) => state.pokemon);
 
   // Update local state when data is fetched
   React.useEffect(() => {
     if (data && data.pokemon) {
       setPokemon(data.pokemon);
+      increase();
     }
   }, [data]); // This effect runs every time data is updated
 
@@ -57,13 +58,28 @@ export default function App() {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+  const boxVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
+    console.log(handPos)
     // console.log(pokemon, data)
   return (
     <div>
+    <motion.div
+        variants={boxVariants}
+        initial="hidden"
+        animate="visible"
+        exit={{ opacity: 0, scale:0 }}
+        transition={{ duration: 1 }}
+      >
     <header>
       <h1>Poke React</h1>
     </header>
     <main>
+      <Pokeball />
+      <Hands />
       {pokemon && (
         <div className="pokemon-container">
           <input value={text} onChange={onInputchange} />
@@ -84,6 +100,7 @@ export default function App() {
         </div>
       )}
     </main>
+    </motion.div>
     </div>
   )
 }
