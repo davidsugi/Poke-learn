@@ -14,8 +14,8 @@ const fetchPokemon = async (id=1) => {
       },
       body: JSON.stringify({
         query: `
-          query GetPokemon($id: Int!) {
-            getPokemon(id: $id) {
+          query GetPokemon($id: ID!) {
+            pokemon(id: $id) {
               name
               types {
                 type {
@@ -23,9 +23,7 @@ const fetchPokemon = async (id=1) => {
                 }
               }
               sprites {
-                officialArtwork {
-                  frontDefault
-                }
+                front_default
               }
             }
           }
@@ -37,7 +35,7 @@ const fetchPokemon = async (id=1) => {
     })
 
     const data = await response.json()
-    pokemon.value = data.data.getPokemon
+    pokemon.value = data.data.pokemon // Changed from data.data.getPokemon to data.data.pokemon
   } catch (error) {
     console.error('Error fetching Pokemon:', error)
   }
@@ -61,8 +59,8 @@ onMounted(() => {
     <div v-if="pokemon" class="pokemon-container">
       <h2>{{ pokemon.name }}</h2>
       <img 
-        v-if="pokemon.sprites?.officialArtwork?.frontDefault" 
-        :src="pokemon.sprites.officialArtwork.frontDefault" 
+        v-if="pokemon.sprites?.front_default"
+        :src="pokemon.sprites.front_default" 
         :alt="pokemon.name"
       />
       <div class="types">
