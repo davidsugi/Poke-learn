@@ -31,10 +31,10 @@ export default function Pokemon({img}:PokemonProps) {
         initial={{ transform: "scale(0)" }}
         animate={{ transform: "scale(1)" }} 
         transition={{ 
-          duration: 0.5, 
+          duration: 0.4, 
           repeat: Infinity, 
           repeatType: "reverse",
-          repeatDelay: 2
+          repeatDelay: 2.3
         }}
         >
         <PokemonImage 

@@ -8,6 +8,7 @@ import RoundedInput from '../components/RoundedInput';
 import { GET_POKE } from '../graphql/queries';
 import useStore from '../services/store';
 import { getAsciiVal } from '../utils';
+import { INITIAL_POKEMON_IMG, POKEMON_IMG_URL } from '../const';
 
 
 interface PokemonType {
@@ -45,8 +46,8 @@ const Title = styled.h1`
   `
   
 export default function LandingPage() {
-
   const [pokemonId, setPokemonId] = useState(151); // Initial Pokemon ID
+  const [pkImage, setPkImage] = useState(INITIAL_POKEMON_IMG[0])
   const [text,setText]=useState("")
   const { loading, error, data } = useQuery<{pokemon: PokemonData}>(GET_POKE, {
     variables: { id:pokemonId },
@@ -55,6 +56,7 @@ export default function LandingPage() {
   const timer = useRef<NodeJS.Timeout | null>(null)
   const setPokemon = useStore((state) => state.setPokemon);
   const pokemon = useStore((state) => state.pokemon);
+  const handPos = useStore((state) => state.handPosition);
 
   // Update local state when data is fetched
   React.useEffect(() => {
@@ -62,6 +64,12 @@ export default function LandingPage() {
       setPokemon(data.pokemon);
     }
   }, [data, setPokemon]); // This effect runs every time data is updated
+
+
+  React.useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * INITIAL_POKEMON_IMG.length);
+    setPkImage(INITIAL_POKEMON_IMG[randomIndex]);
+  }, [handPos]); // This effect runs every time handPos is updated
 
   const onInputchange = (e:ChangeEvent<HTMLInputElement>)=>{
     setText(e.target.value);
@@ -101,7 +109,7 @@ export default function LandingPage() {
                 {pokemon && (
                 <>
                 <div className="pokemon-container">
-                    <Pokemon img={pokemon.sprites?.front_default} />
+                    <Pokemon img={pkImage} />
                 </div>
                 <RoundedInput value={text} onChange={onInputchange} />
                 </>
