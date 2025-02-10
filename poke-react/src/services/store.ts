@@ -8,16 +8,17 @@ type PokeReactStore = {
     setPokemon: (pokemon:Pokemon|null)=>void;
 }
 
-interface PokemonType {
+export interface PokemonType {
     type: {
       name: string;
     }
   }
   
-  interface Pokemon {
+  export interface Pokemon {
     name: string;
     sprites: {
       front_default: string;
+      front_shiny: string;
     };
     types: PokemonType[];
   }

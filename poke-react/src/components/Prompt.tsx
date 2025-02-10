@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { JSX } from 'react'
 import PromptImg from "../assets/img/Prompt.png";
 import styled from 'styled-components';
 
@@ -25,13 +25,19 @@ const PromptContainer = styled.div<PromptContainerProps>`
     }
 `
 
-export default function Prompt() {
+type PromptProps = {
+    children?: JSX.Element
+}
+
+export default function Prompt({children}: PromptProps) {
   return (
         <PromptContainer bgPath={`url(${PromptImg})`}>
-            <span>
+            {
+                children ?? <span>
                 Search your Pokemon Soul mate. <br></br>
                 The one that's destined for you
             </span>
+            }
         </PromptContainer>
   )
 }

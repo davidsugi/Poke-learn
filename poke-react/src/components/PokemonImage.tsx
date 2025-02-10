@@ -4,6 +4,7 @@ import {motion } from 'framer-motion';
 
 type PokemonProps = {
   img: string;
+  disableAnimation?: boolean;
 }
 
 const PokemonContainer = styled.div`
@@ -22,26 +23,27 @@ const PokemonImage = styled.img`
   width: 10vw;
 `
 
-export default function Pokemon({img}:PokemonProps) {
-  if(!img) return null;
+export default function Pokemon({ img, disableAnimation }: PokemonProps) {
+  if (!img) return null;
 
   return (
     <PokemonContainer>
-      <motion.div
-        initial={{ transform: "scale(0)" }}
-        animate={{ transform: "scale(1)" }} 
-        transition={{ 
-          duration: 0.4, 
-          repeat: Infinity, 
-          repeatType: "reverse",
-          repeatDelay: 2.3
-        }}
+      {disableAnimation ? (
+        <PokemonImage src={img} alt={`pokemon icon ${img}`} />
+      ) : (
+        <motion.div
+          initial={{ transform: "scale(0)" }}
+          animate={{ transform: "scale(1)" }}
+          transition={{
+            duration: 0.4,
+            repeat: Infinity,
+            repeatType: "reverse",
+            repeatDelay: 2.3,
+          }}
         >
-        <PokemonImage 
-          src={img}
-          alt={`pokemon icon ${img}`}
-        />
-      </motion.div>
+          <PokemonImage src={img} alt={`pokemon icon ${img}`} />
+        </motion.div>
+      )}
     </PokemonContainer>
-  )
+  );
 }

@@ -11,6 +11,7 @@ query GetPokemon($id: ID!) {
     }
     sprites {
       front_default
+      front_shiny
     }
   }
 }
