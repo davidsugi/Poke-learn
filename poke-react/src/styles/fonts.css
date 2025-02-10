@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'CustomFont';
+  src: url('../assets/font/pokemon-emerald.ttf') format('truetype'); /* Correct format */
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'PokeFont';
+    src: url('../assets/font/Pokemon Solid.ttf') format('truetype'); /* Correct format */
+    font-weight: normal;
+    font-style: normal;
+  }
+  

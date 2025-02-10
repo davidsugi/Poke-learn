@@ -7,6 +7,7 @@ import useStore from '../services/store';
 
 
 const Title = styled.h1`
+font-family: 'PokeFont', sans-serif;
   font-size: 2rem;
   position: absolute;
   top: 5vh;
@@ -59,9 +60,9 @@ export default function Result() {
                 </>
                 )}
                 <Prompt>
-                    <>Congrats! Your Poke-Bestie is {isShiny && "Shiny"} {pokemon?.name || ""}!
+                    <span>Congrats! Your Poke-Bestie is {isShiny && "Shiny"} {pokemon?.name || ""}!
                     <br></br> A truly loyal companion! {isShiny && "and HEY ITS SHINY AS WELL! What a struck of luck!"}
-                    </>
+                    </span>
                 </Prompt>
             </LPContainer>
         </motion.div>

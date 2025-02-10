@@ -13,6 +13,7 @@ import { getAsciiVal } from '../utils';
 
 
 const Title = styled.h1`
+    font-family: 'PokeFont', sans-serif;
   font-size: 2rem;
   position: absolute;
   top: 5vh;

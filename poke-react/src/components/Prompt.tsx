@@ -21,6 +21,7 @@ const PromptContainer = styled.div<PromptContainerProps>`
     bottom: 0;
     max-height: 30vh;
     span{
+        font-family: 'CustomFont', sans-serif; 
         font-size: 3vw;
     }
 `
