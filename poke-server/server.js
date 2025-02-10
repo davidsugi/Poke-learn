@@ -1,8 +1,8 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const cors = require('cors');
-const schema = require('./schemas/index')
-const root = require('./resolvers/index')
+const schema = require('./schemas/index');
+const root = require('./resolvers/index');
 const app = express();
 
 app.use(cors());
@@ -16,3 +16,5 @@ app.use('/graphql', graphqlHTTP({
 app.listen(4000, () => {
   console.log('Server is running on http://localhost:4000/graphql');
 });
+
+module.exports = app; // Export the app
