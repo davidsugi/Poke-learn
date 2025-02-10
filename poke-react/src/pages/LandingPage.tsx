@@ -1,14 +1,13 @@
+import { useQuery } from '@apollo/client';
 import { motion } from 'framer-motion';
 import { ChangeEvent, default as React, useRef, useState } from 'react';
-import Pokemon from '../components/PokemonImage';
-import { getAsciiVal } from '../utils';
-import { useQuery } from '@apollo/client';
-import useStore from '../services/store';
-import { GET_POKE } from '../graphql/queries';
-import AssetLoader from '../components/AssetLoader';
-import Prompt from '../components/Prompt';
 import styled from 'styled-components';
+import Pokemon from '../components/PokemonImage';
+import Prompt from '../components/Prompt';
 import RoundedInput from '../components/RoundedInput';
+import { GET_POKE } from '../graphql/queries';
+import useStore from '../services/store';
+import { getAsciiVal } from '../utils';
 
 
 interface PokemonType {
@@ -17,7 +16,7 @@ interface PokemonType {
     }
   }
   
-  interface Pokemon {
+  interface PokemonData {
     name: string;
     sprites: {
       front_default: string;
@@ -49,7 +48,7 @@ export default function LandingPage() {
 
   const [pokemonId, setPokemonId] = useState(151); // Initial Pokemon ID
   const [text,setText]=useState("")
-  const { loading, error, data } = useQuery<{pokemon: Pokemon}>(GET_POKE, {
+  const { loading, error, data } = useQuery<{pokemon: PokemonData}>(GET_POKE, {
     variables: { id:pokemonId },
   });
   
