@@ -61,7 +61,8 @@ export default function Result() {
                 )}
                 <Prompt>
                     <span>Congrats! Your Poke-Bestie is {isShiny && "Shiny"} {pokemon?.name || ""}!
-                    <br></br> A truly loyal companion! {isShiny && "and HEY ITS SHINY AS WELL! What a struck of luck!"}
+                    <br></br> A truly loyal companion! <br />
+                    {isShiny && "And HEY ITS SHINY AS WELL! What a struck of luck!"}
                     </span>
                 </Prompt>
             </LPContainer>
