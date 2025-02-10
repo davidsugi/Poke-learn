@@ -30,6 +30,7 @@ font-family: 'PokeFont', sans-serif;
   
 export default function Result() {
   const pokemon = useStore((state) => state.pokemon);
+  const setPokemon = useStore((state) => state.setPokemon);
 
   const boxVariants = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -54,7 +55,7 @@ export default function Result() {
                 <Title>My  Poke Bestie</Title>
                 {pokemon && (
                 <>
-                <div className="pokemon-container">
+                <div className="pokemon-container" onClick={()=> setPokemon(null)}>
                     <Pokemon disableAnimation img={isShiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default} />
                 </div>
                 </>

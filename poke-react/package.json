@@ -41,8 +41,5 @@
   "devDependencies": {
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3"
-  },
-  "engines": {
-    "node": "20.x"
   }
 }
