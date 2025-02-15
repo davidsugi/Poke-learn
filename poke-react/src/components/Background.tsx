@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 import background from '../assets/img/Bg.jpeg';
 import Pokeball from './Pokeball';
@@ -46,19 +46,6 @@ const BgInnerContainer = styled.div`
 export default function Background(props:{children:React.ReactNode}) {
 
   const handPos = useStore((state) => state.handPosition);
-  const increase = useStore((state) => state.increase);
-  const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-  useEffect(() => {
-    timeoutRef.current= setInterval(() => {
-        increase();
-      }, 5000);
-        return () => {
-            if (timeoutRef.current) {
-            clearInterval(timeoutRef.current);
-            }
-        }
-  }, [increase]);
- 
 
   return (
     <BgContainer bg={background}>

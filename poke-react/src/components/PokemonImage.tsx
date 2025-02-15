@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import {motion } from 'framer-motion';
+import useStore from '../services/store';
 
 type PokemonProps = {
   img: string;
@@ -23,7 +24,13 @@ const PokemonImage = styled.img`
   width: 10vw;
 `
 
+const ImageVariants = {
+  hidden: { transform: "scale(0)" },
+  visible: { transform: "scale(1)" },
+};
+
 export default function Pokemon({ img, disableAnimation }: PokemonProps) {
+  const increase = useStore((state) => state.increase);
   if (!img) return null;
 
   return (
@@ -32,13 +39,20 @@ export default function Pokemon({ img, disableAnimation }: PokemonProps) {
         <PokemonImage src={img} alt={`pokemon icon ${img}`} />
       ) : (
         <motion.div
-          initial={{ transform: "scale(0)" }}
-          animate={{ transform: "scale(1)" }}
+          variants={ImageVariants}
+          initial="hidden"
+          animate={"visible"}
           transition={{
             duration: 0.4,
             repeat: Infinity,
             repeatType: "reverse",
-            repeatDelay: 2.3,
+            repeatDelay: 3,
+          }}
+          onUpdate={(latest) => {
+            const isHidden=latest.transform==="scale(0)";
+            if(isHidden){
+              increase();
+            }
           }}
         >
           <PokemonImage src={img} alt={`pokemon icon ${img}`} />

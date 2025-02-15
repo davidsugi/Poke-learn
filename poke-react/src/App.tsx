@@ -9,7 +9,6 @@ import Result from './pages/Result';
 
 export default function App() {
   const pokemon = useStore((state) => state.pokemon);
-  console.log(pokemon, !!pokemon)
   return (
     <main>
       <AssetLoader>
