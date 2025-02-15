@@ -14,6 +14,7 @@ const PokemonContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   position: relative;
+  transform: translateY(-8vh);
 `
 
 const PokemonImage = styled.img`
@@ -46,7 +47,7 @@ export default function Pokemon({ img, disableAnimation }: PokemonProps) {
             duration: 0.4,
             repeat: Infinity,
             repeatType: "reverse",
-            repeatDelay: 3,
+            repeatDelay: 2.3,
           }}
           onUpdate={(latest) => {
             const isHidden=latest.transform==="scale(0)";

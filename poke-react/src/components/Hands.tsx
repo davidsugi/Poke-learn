@@ -8,13 +8,17 @@ const HandImage = styled.img`
   height: 100px;  
 `
 
-export default function Hands() {
+type IHandProps = {
+  isVisible?: boolean;
+}
+
+export default function Hands({isVisible}:IHandProps) {
   return (
     <motion.div
-      initial={{ transform: "translateY(-20px)" }}
-      animate={{ transform: "translateY(5px)" }}
+      initial={{ transform: "translateY(-5vh)" }}
+      animate={{ transform: "translateY(2vh)" }}
       transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
-      style={{ position: "absolute", top: "-9vw" }}
+      style={{ position: "absolute", top: "-9vw", opacity: isVisible ? "1" : "0"}}
     >
       <HandImage src={HandImg} alt="handicon" />
     </motion.div>

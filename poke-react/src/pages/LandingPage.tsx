@@ -10,21 +10,6 @@ import { INITIAL_POKEMON_IMG } from '../const';
 import { GET_POKE } from '../graphql/queries';
 import useStore, { Pokemon as PokemonData} from '../services/store';
 import { getAsciiVal } from '../utils';
-
-
-const Title = styled.h1`
-    font-family: 'PokeFont', sans-serif;
-  font-size: 2rem;
-  position: absolute;
-  top: 5vh;
-  font-size: 7vw;
-  color: yellow;
-  text-shadow: 
-    -0.5vw -0.5vw 0 #0000FF,  
-    0.5vw -0.5vw 0 #0000FF,
-    -0.5vw 0.5vw 0 #0000FF,
-    0.5vw 0.5vw 0 #0000FF;
-`
   const LPContainer = styled.div`
     display: flex;
     align-items: center;
@@ -93,8 +78,6 @@ export default function LandingPage() {
             transition={{ duration: 1 }}
         >
             <LPContainer>
-                <Title>My  Poke Bestie</Title>
-              
                 <>
                     <div className="pokemon-container">
                         <Pokemon img={pkImage} />
