@@ -25,7 +25,7 @@
       "src": "/static/(.*)",
       "dest": "poke-react/static/$1",
       "headers": {
-        "Cache-Control": "no-cache, no-store, immutable"
+        "Cache-Control": "public, max-age=31536000, immutable"
       }
     },
     {
