@@ -23,7 +23,10 @@
     },
     {
       "src": "/static/(.*)",
-      "dest": "poke-react/static/$1"
+      "dest": "poke-react/static/$1",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, immutable"
+      }
     },
     {
       "src": "/(.*)",
