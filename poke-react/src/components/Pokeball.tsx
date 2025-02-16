@@ -39,17 +39,17 @@ const SpriteContainer = styled.div<SpriteContainerProps>`
 `
 
 
-const MidSpriteContainer = styled.div<SpriteContainerProps>`
-  background-image: ${(props:SpriteContainerProps)=> props.bgPath};
-  background-repeat: no-repeat;
-  width: 150px;
-  height: 135px;
-  transform: scale(0.5);
-  background-position:-155px 0;
-  ${(props) => props.isAnimating && css`
-        animation: ${SpriteKeyframes} steps(3) 0.6s infinite alternate;
-  `}
-`
+// const MidSpriteContainer = styled.div<SpriteContainerProps>`
+//   background-image: ${(props:SpriteContainerProps)=> props.bgPath};
+//   background-repeat: no-repeat;
+//   width: 150px;
+//   height: 135px;
+//   transform: scale(0.5);
+//   background-position:-155px 0;
+//   ${(props) => props.isAnimating && css`
+//         animation: ${SpriteKeyframes} steps(3) 0.6s infinite alternate;
+//   `}
+// `
 
 type PokeballProps = {
   isAnimating?: boolean;
