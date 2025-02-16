@@ -1,5 +1,8 @@
 import React, { useRef, ReactNode, createContext, useContext } from 'react';
 import html2canvas from 'html2canvas';
+import { useModal } from './ModalWrapper';
+import ScreenshotModal from '../Modal/ModalTemplate/Screenshot';
+import { useConfig } from './ConfigProvider';
 
 interface ScreenshotComponentProps {
     children: ReactNode;
@@ -10,6 +13,8 @@ const ScreenshotContext = createContext({handleScreenshot: ()=>{}});
   const ScreenshotComponent: React.FC<ScreenshotComponentProps> = ({ children }) => {
   // Create a ref for the element to capture
   const captureRef = useRef(null);
+  const CONFIG = useConfig().MODAL;
+  const { openModal} = useModal();
 
   // Function to handle screenshot capturing
   const handleScreenshot = () => {
@@ -22,15 +27,7 @@ const ScreenshotContext = createContext({handleScreenshot: ()=>{}});
         .then((canvas) => {
           // Convert the canvas to a data URL (PNG image)
           const imgData = canvas.toDataURL('image/png');
-
-          // Option 1: Open the image in a new window
-          const newWindow = window.open();
-          if (newWindow) {
-            newWindow.document.write(`<img src="${imgData}" alt="Screenshot" />`);
-          }
-
-          // Option 2: You could also set the image data into state to display in your component
-          // setScreenshot(imgData);
+          openModal(<ScreenshotModal src={imgData} />, CONFIG.SCRENSHOT_TITLE)
         })
         .catch((error) => {
           console.error('Error capturing screenshot:', error);

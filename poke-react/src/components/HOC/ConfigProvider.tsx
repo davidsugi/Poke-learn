@@ -1,6 +1,6 @@
 // ConfigContext.tsx
 import React, { createContext, useContext } from "react";
-import {WORDING} from "../const/text";
+import {WORDING} from "../../const/text";
 
 const ConfigContext = createContext(WORDING);
 

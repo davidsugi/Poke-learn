@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { motion } from 'framer-motion';
 import { default as React, useState } from 'react';
 import styled from 'styled-components';
-import { useConfig } from '../components/ConfigProvider';
+import { useConfig } from '../components/HOC/ConfigProvider';
 import Loader from '../components/Loader';
 import Pokemon from '../components/PokemonImage';
 import Prompt from '../components/Prompt';
@@ -74,8 +74,8 @@ export default function LandingPage() {
                 </>
                 <Prompt>
                   <span>
-                  {CONFIG.DESCRIPTION}
-              </span>
+                    {CONFIG.DESCRIPTION}
+                  </span>
                 </Prompt>
             </LPContainer>
         </motion.div>
