@@ -35,8 +35,7 @@ export default function Prompt({children}: PromptProps) {
         <PromptContainer bgPath={`url(${PromptImg})`}>
             {
                 children ?? <span>
-                Search your Pokemon Soul mate. <br></br>
-                The one that's destined for you
+                Welcome to My Poke Bestie
             </span>
             }
         </PromptContainer>

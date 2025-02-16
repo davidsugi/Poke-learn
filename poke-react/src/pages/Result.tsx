@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { default as React } from 'react';
 import styled from 'styled-components';
+import { useConfig } from '../components/ConfigProvider';
 import Pokemon from '../components/PokemonImage';
 import Prompt from '../components/Prompt';
 import useStore from '../services/store';
@@ -18,6 +19,7 @@ import useStore from '../services/store';
 export default function Result() {
   const pokemon = useStore((state) => state.pokemon);
   const setPokemon = useStore((state) => state.setPokemon);
+  const CONFIG = useConfig().RESULT_PAGE;
 
   const boxVariants = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -47,9 +49,9 @@ export default function Result() {
                 </>
                 )}
                 <Prompt>
-                    <span>Congrats! Your Poke-Bestie is {isShiny && "Shiny"} {pokemon?.name || ""}!
+                    <span>{CONFIG.CONGRATS} {isShiny && CONFIG.SHINY_TEXT} {pokemon?.name || ""}!
                     <br></br> A truly loyal companion! <br />
-                    {isShiny && "And HEY ITS SHINY AS WELL! What a struck of luck!"}
+                    {isShiny && CONFIG.SHINY_DESCRIPTION}
                     </span>
                 </Prompt>
             </LPContainer>

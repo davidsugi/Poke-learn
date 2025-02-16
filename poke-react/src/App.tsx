@@ -5,6 +5,7 @@ import LandingPage from './pages/LandingPage';
 import AssetLoader from './components/AssetLoader';
 import useStore from './services/store';
 import Result from './pages/Result';
+import { ConfigProvider } from './components/ConfigProvider';
 
 
 export default function App() {
@@ -12,9 +13,11 @@ export default function App() {
   return (
     <main>
       <AssetLoader>
-        <Background>
-          { !!pokemon ? <Result /> : <LandingPage />}
-        </Background>
+        <ConfigProvider>
+          <Background>
+            { !!pokemon ? <Result /> : <LandingPage />}
+          </Background>
+        </ConfigProvider>
       </AssetLoader>
     </main>
   )

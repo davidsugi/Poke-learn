@@ -1,15 +1,16 @@
 import { useQuery } from '@apollo/client';
 import { motion } from 'framer-motion';
-import { ChangeEvent, default as React, useRef, useState } from 'react';
+import { default as React, useState } from 'react';
 import styled from 'styled-components';
+import { useConfig } from '../components/ConfigProvider';
 import Loader from '../components/Loader';
 import Pokemon from '../components/PokemonImage';
 import Prompt from '../components/Prompt';
 import RoundedInput from '../components/RoundedInput';
 import { INITIAL_POKEMON_IMG } from '../const';
 import { GET_POKE } from '../graphql/queries';
-import useStore, { Pokemon as PokemonData} from '../services/store';
-import { getAsciiVal } from '../utils';
+import { useInput } from "../hooks/useInput";
+import useStore, { Pokemon as PokemonData } from '../services/store';
   const LPContainer = styled.div`
     display: flex;
     align-items: center;
@@ -20,14 +21,13 @@ import { getAsciiVal } from '../utils';
   `
   
 export default function LandingPage() {
-  const [pokemonId, setPokemonId] = useState(0); // Initial Pokemon ID
   const [pkImage, setPkImage] = useState(INITIAL_POKEMON_IMG[0])
-  const [text,setText]=useState("")
+  const {pokemonId, text, onInputchange} =  useInput();
+  const CONFIG = useConfig().LANDING_PAGE
   const { loading, error, data } = useQuery<{pokemon: PokemonData}>(GET_POKE, {
-    variables: { id:pokemonId },
+    variables: { id:pokemonId  ?? 1 },
   });
   
-  const timer = useRef<NodeJS.Timeout | null>(null)
   const setPokemon = useStore((state) => state.setPokemon);
   const handPos = useStore((state) => state.handPosition);
 
@@ -44,18 +44,6 @@ export default function LandingPage() {
     setPkImage(INITIAL_POKEMON_IMG[randomIndex]);
   }, [handPos]); // This effect runs every time handPos is updated
 
-  const onInputchange = (e:ChangeEvent<HTMLInputElement>)=>{
-    setText(e.target.value);
-    
-    if (timer.current) {
-      clearTimeout(timer.current); // Clear the previous timeout if there's one
-    }
-
-    timer.current = setTimeout(() => {
-      setPokemonId(getAsciiVal(e.target.value));
-      // Update the state after a short delay (throttling)
-    }, 1000); // 500ms delay between user inputs
-  }
 
   if (loading) return <Loader />
   if (error) return <p>Error: {error.message}</p>;
@@ -84,7 +72,11 @@ export default function LandingPage() {
                     </div>
                     <RoundedInput value={text} onChange={onInputchange} />
                 </>
-                <Prompt />
+                <Prompt>
+                  <span>
+                  {CONFIG.DESCRIPTION}
+              </span>
+                </Prompt>
             </LPContainer>
         </motion.div>
   )

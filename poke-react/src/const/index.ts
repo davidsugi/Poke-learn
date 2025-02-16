@@ -1,4 +1,5 @@
-const INITIAL_POKEMON = [1,
+const INITIAL_POKEMON = [
+    1,
     4,
     7,
     152,

@@ -2,10 +2,12 @@ const { buildSchema } = require('graphql');
 const fs = require('fs');
 const path = require('path');
 
+const { gql } = require('apollo-server-express');
+
 // Read the schema file
 const typeDefs = fs.readFileSync(path.join(__dirname, '/schema.gql'), 'utf8');
 
-const schemas = buildSchema(`
+const schemas = gql`
   type Query {
     hello: String
     pokemon(id: ID!): Pokemon
@@ -63,7 +65,7 @@ const schemas = buildSchema(`
     back_default: String
     back_shiny: String
   }
-`);
+`;
 
 
 module.exports = schemas
