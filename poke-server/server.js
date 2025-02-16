@@ -4,19 +4,10 @@ const typeDefs = require('./schemas/index');
 const root = require('./resolvers/index');
 const app = express();
 const { ApolloServer } = require('apollo-server-express');
-
+const { mock } = require('./mock/pokemon'); // Ensure correct destructuring
 app.use(cors());
 
-// app.use('/graphql', graphqlHTTP({
-//   schema: schema,
-//   rootValue: root,
-//   graphiql: true, // Enable GraphiQL for testing
-// }));
-
-// app.listen(4000, () => {
-//   console.log('Server is running on http://localhost:4000/graphql');
-// });
-
+console.log(process.env, process.env.IS_MOCK === 'true')
 async function startApolloServer() {
   // Create an instance of Apollo Server
   const server = new ApolloServer({
@@ -24,6 +15,8 @@ async function startApolloServer() {
     resolvers: root,
     introspection: process.env.NODE_ENV !== 'production',
     playground: process.env.NODE_ENV !== 'production',
+    mocks: process.env.IS_MOCK === 'true' ? mock : false, // Ensure this is correctly passed
+    mockEntireSchema:  process.env.IS_MOCK === 'true',
   });
   await server.start();
 
@@ -38,6 +31,5 @@ async function startApolloServer() {
 }
 
 startApolloServer();
-
 
 module.exports = app; // Export the app
