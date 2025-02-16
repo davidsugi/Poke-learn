@@ -22,6 +22,8 @@ async function startApolloServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers: root,
+    introspection: process.env.NODE_ENV !== 'production',
+    playground: process.env.NODE_ENV !== 'production',
   });
   await server.start();
 
