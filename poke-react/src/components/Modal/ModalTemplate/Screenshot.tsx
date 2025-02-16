@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
-import { ReactComponent as Save } from '../../assets/icons/Save.svg';
-import { ReactComponent as Share } from '../../assets/icons/Share.svg';
+import { ReactComponent as Save } from '../../../assets/icons/Save.svg';
+import { ReactComponent as Share } from '../../../assets/icons/Share.svg';
 
 type ScreenshotModalProps = {
     src: string
