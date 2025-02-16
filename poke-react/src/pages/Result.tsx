@@ -6,6 +6,7 @@ import Pokemon from '../components/PokemonImage';
 import Prompt from '../components/Prompt';
 import useStore from '../services/store';
 import { getAsciiVal } from '../utils';
+import { TypeAnimation } from '../components/common/Typical';
 
 
   const LPContainer = styled.div`
@@ -50,10 +51,7 @@ export default function Result() {
                 </motion.div>
                 )}
                 <Prompt>
-                    <span>{CONFIG.CONGRATS.replace("{{replacer}}",name ?? "")} {isShiny && CONFIG.SHINY_TEXT} {pokemon?.name || ""}!
-                    <br></br> {POKE_DESCRIPTION} <br />
-                    {isShiny && CONFIG.SHINY_DESCRIPTION}
-                    </span>
+                  <TypeAnimation word={`${CONFIG.CONGRATS.replace("{{replacer}}",name ?? "")} ${isShiny ? CONFIG.SHINY_TEXT : ""} ${pokemon?.name || ""}! ${POKE_DESCRIPTION}. ${isShiny ? CONFIG.SHINY_DESCRIPTION : ""}`}/>
                 </Prompt>
             </LPContainer>
   )

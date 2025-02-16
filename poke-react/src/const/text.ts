@@ -17,7 +17,7 @@ export const WORDING = {
         SHINY_TEXT: "Shiny",
     },
     LANDING_PAGE: {
-        DESCRIPTION: "Search your Pokemon Soul mate. \nThe one that's destined for you"
+        DESCRIPTION: "Search your Pokemon Soul mate. The one that's destined for you!"
     },
     MODAL:{
         SCRENSHOT_TITLE: "Save or Share it to the social media!"

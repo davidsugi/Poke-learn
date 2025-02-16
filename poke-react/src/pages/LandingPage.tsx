@@ -11,6 +11,7 @@ import { INITIAL_POKEMON_IMG } from '../const';
 import { GET_POKE } from '../graphql/queries';
 import { useInput } from "../hooks/useInput";
 import useStore, { Pokemon as PokemonData } from '../services/store';
+import { TypeAnimation } from '../components/common/Typical';
   const LPContainer = styled.div`
     display: flex;
     align-items: center;
@@ -74,7 +75,7 @@ export default function LandingPage() {
                 </>
                 <Prompt>
                   <span>
-                    {CONFIG.DESCRIPTION}
+                    <TypeAnimation word={CONFIG.DESCRIPTION}/>
                   </span>
                 </Prompt>
             </LPContainer>

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.12.9",
+    "@camwiegert/typical": "^0.1.1",
     "cra-template": "1.2.0",
     "framer-motion": "^12.4.1",
     "html2canvas": "^1.4.1",

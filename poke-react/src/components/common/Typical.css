@@ -1,0 +1,13 @@
+@keyframes flick {
+        0%, 100% {
+            opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+}
+
+.typer::after {
+    content: "|";
+    animation: flick 1s infinite;
+}
