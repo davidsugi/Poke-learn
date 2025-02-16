@@ -23,6 +23,4 @@ export const useInput = () =>{
       }
 
     return {pokemonId, text, onInputchange}
-
-
 }

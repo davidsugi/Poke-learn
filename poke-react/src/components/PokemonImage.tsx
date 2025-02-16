@@ -44,10 +44,10 @@ export default function Pokemon({ img, disableAnimation }: PokemonProps) {
           initial="hidden"
           animate={"visible"}
           transition={{
-            duration: 0.4,
+            duration: 0.7,
             repeat: Infinity,
             repeatType: "reverse",
-            repeatDelay: 2.3,
+            repeatDelay: 1,
           }}
           onUpdate={(latest) => {
             const isHidden=latest.transform==="scale(0)";

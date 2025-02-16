@@ -5,6 +5,8 @@ import { useConfig } from '../components/ConfigProvider';
 import Pokemon from '../components/PokemonImage';
 import Prompt from '../components/Prompt';
 import useStore from '../services/store';
+import { useScreenshot } from '../components/HOC/ScreenCapt';
+import { getAsciiVal } from '../utils';
 
 
   const LPContainer = styled.div`
@@ -18,7 +20,9 @@ import useStore from '../services/store';
   
 export default function Result() {
   const pokemon = useStore((state) => state.pokemon);
+  const name = useStore((state) => state.name);
   const setPokemon = useStore((state) => state.setPokemon);
+  const {handleScreenshot} = useScreenshot();
   const CONFIG = useConfig().RESULT_PAGE;
 
   const boxVariants = {
@@ -31,7 +35,7 @@ export default function Result() {
   };
 
   const isShiny = Math.floor(Math.random() * 100) % 7 === 0
-  
+  const POKE_DESCRIPTION = CONFIG.RESULT_VARIANTS[getAsciiVal(name||"")%9]
   return (
         <motion.div
             variants={boxVariants}
@@ -46,11 +50,14 @@ export default function Result() {
                 <div className="pokemon-container" onClick={()=> setPokemon(null)}>
                     <Pokemon disableAnimation img={isShiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default} />
                 </div>
+                <button onClick={handleScreenshot}>
+                  capture!
+                </button>
                 </>
                 )}
                 <Prompt>
-                    <span>{CONFIG.CONGRATS} {isShiny && CONFIG.SHINY_TEXT} {pokemon?.name || ""}!
-                    <br></br> A truly loyal companion! <br />
+                    <span>{CONFIG.CONGRATS.replace("{{replacer}}",name ?? "")} {isShiny && CONFIG.SHINY_TEXT} {pokemon?.name || ""}!
+                    <br></br> {POKE_DESCRIPTION} <br />
                     {isShiny && CONFIG.SHINY_DESCRIPTION}
                     </span>
                 </Prompt>

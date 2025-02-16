@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { INITIAL_POKEMON_IMG } from '../const';
-import Loader from './Loader';
-import Bag from '../assets/img/Bag.png';
-import Bg from '../assets/img/Bg.jpeg';
-import Hands from '../assets/img/Hands.png';
-import Pokeball from '../assets/img/Pokeball.png';
-import Prompt from '../assets/img/Prompt.png';
+import { INITIAL_POKEMON_IMG } from '../../const';
+import Loader from '../Loader';
+import Bag from '../../assets/img/Bag.png';
+import Bg from '../../assets/img/Bg.jpeg';
+import Hands from '../../assets/img/Hands.png';
+import Pokeball from '../../assets/img/Pokeball.png';
+import Prompt from '../../assets/img/Prompt.png';
 import { motion } from 'framer-motion';
 
 type AssetLoaderProps = {

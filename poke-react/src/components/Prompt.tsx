@@ -23,6 +23,7 @@ const PromptContainer = styled.div<PromptContainerProps>`
     span{
         font-family: 'CustomFont', sans-serif; 
         font-size: 3vw;
+        width: 50vw;
     }
 `
 

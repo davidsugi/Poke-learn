@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components';
-import background from '../assets/img/Bg.jpeg';
-import Pokeball from './Pokeball';
-import Bag from "../assets/img/Bag.png";
-import useStore from '../services/store';
+import background from '../../assets/img/Bg.jpeg';
+import Pokeball from '../Pokeball';
+import Bag from "../../assets/img/Bag.png";
+import useStore from '../../services/store';
 
 type BgContainerProps = {
     bg: string;

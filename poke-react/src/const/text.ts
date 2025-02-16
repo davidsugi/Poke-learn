@@ -13,7 +13,7 @@ export const WORDING = {
             "A truly loyal companion!"
         ],
         SHINY_DESCRIPTION : "And HEY ITS SHINY AS WELL! What a struck of luck!",
-        CONGRATS: "Congrats! Your Poke-Bestie is",
+        CONGRATS: "Congrats! {{replacer}} Your Poke-Bestie is",
         SHINY_TEXT: "Shiny",
     },
     LANDING_PAGE: {
